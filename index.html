@@ -793,14 +793,19 @@
                             x-for="org in communities.past"
                             :key="org.name"
                         >
-                            <div class="project-row">
+                            <a
+                                class="project-row"
+                                :href="org.url"
+                                target="_blank"
+                                rel="noopener"
+                            >
                                 <span
                                     class="pname"
                                     style="color: #00cc00"
                                     x-text="org.name"
                                 ></span>
                                 <span class="plink" x-text="org.role"></span>
-                            </div>
+                            </a>
                         </template>
                     </div>
                 </div>
@@ -921,10 +926,10 @@
                             },
                         ],
                         past: [
-                            { name: "Club DevOps", role: "Staff" },
-                            { name: "Frontend Cafe", role: "Mentor" },
-                            { name: "Sin JR No Hay SR", role: "Mentor" },
-                            { name: "Instituto Web", role: "Mentor" },
+                            { name: "Club DevOps", role: "Staff", url: "https://linktr.ee/clubdevops" },
+                            { name: "Frontend Cafe", role: "Mentor", url: "https://frontend.cafe/" },
+                            { name: "Sin JR No Hay SR", role: "Mentor", url: "https://linktr.ee/sinjrnohaysr" },
+                            { name: "Instituto Web", role: "Mentor", url: "https://www.institutoweb.com.ar/" },
                         ],
                     },
                     skills: [
