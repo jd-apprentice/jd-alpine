@@ -539,7 +539,11 @@
             </div>
 
             <!-- ─── SCREEN ─── -->
-            <div class="screen" x-data="portfolio()" @click="focusInput($event)">
+            <div
+                class="screen"
+                x-data="portfolio()"
+                @click="focusInput($event)"
+            >
                 <div class="about-header">
                     <div class="profile-pic">
                         <img
@@ -839,9 +843,23 @@
             <!-- ─── STATUS BAR (audio player) ─── -->
             <div class="statusbar">
                 <div class="statusbar-controls">
-                    <button class="statusbar-btn" id="prevButton" title="Previous">◀◀</button>
-                    <button class="statusbar-btn" id="playPauseLabel" title="Play/Pause">▶</button>
-                    <button class="statusbar-btn" id="nextButton" title="Next">▶▶</button>
+                    <button
+                        class="statusbar-btn"
+                        id="prevButton"
+                        title="Previous"
+                    >
+                        ◀◀
+                    </button>
+                    <button
+                        class="statusbar-btn"
+                        id="playPauseLabel"
+                        title="Play/Pause"
+                    >
+                        ▶
+                    </button>
+                    <button class="statusbar-btn" id="nextButton" title="Next">
+                        ▶▶
+                    </button>
                 </div>
                 <div class="statusbar-song" id="nowPlaying">
                     <span class="now-playing">♫</span>
@@ -905,11 +923,6 @@
                     communities: {
                         current: [
                             {
-                                name: "RustLang ES",
-                                role: "Staff",
-                                url: "https://rustlang-es.org/",
-                            },
-                            {
                                 name: "Cloud Tinkerers",
                                 role: "Contributor",
                                 url: "https://cloudtinkerers.com/",
@@ -926,10 +939,31 @@
                             },
                         ],
                         past: [
-                            { name: "Club DevOps", role: "Staff", url: "https://linktr.ee/clubdevops" },
-                            { name: "Frontend Cafe", role: "Mentor", url: "https://frontend.cafe/" },
-                            { name: "Sin JR No Hay SR", role: "Mentor", url: "https://linktr.ee/sinjrnohaysr" },
-                            { name: "Instituto Web", role: "Mentor", url: "https://www.institutoweb.com.ar/" },
+                            {
+                                name: "RustLang ES",
+                                role: "Staff",
+                                url: "https://rustlang-es.org/",
+                            },
+                            {
+                                name: "Club DevOps",
+                                role: "Staff",
+                                url: "https://linktr.ee/clubdevops",
+                            },
+                            {
+                                name: "Frontend Cafe",
+                                role: "Mentor",
+                                url: "https://frontend.cafe/",
+                            },
+                            {
+                                name: "Sin JR No Hay SR",
+                                role: "Mentor",
+                                url: "https://linktr.ee/sinjrnohaysr",
+                            },
+                            {
+                                name: "Instituto Web",
+                                role: "Mentor",
+                                url: "https://www.institutoweb.com.ar/",
+                            },
                         ],
                     },
                     skills: [
