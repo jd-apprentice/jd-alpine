@@ -9,7 +9,7 @@
     '/* Sparkle cursor trail */' +
     '@keyframes sparkle-float {' +
     '  0%   { opacity: 1; transform: translateY(0) scale(1); }' +
-    '  100% { opacity: 0; transform: translateY(-60px) scale(0.2); }' +
+    '  100% { opacity: 0; transform: translateY(-20px) scale(0.3); }' +
     '}' +
     '.sparkle {' +
     '  position: fixed;' +
@@ -21,18 +21,7 @@
     '  line-height: 1;' +
     '}' +
     '' +
-    '/* Cursor glow */' +
-    '#cursor-glow {' +
-    '  position: fixed;' +
-    '  pointer-events: none;' +
-    '  width: 24px;' +
-    '  height: 24px;' +
-    '  border-radius: 50%;' +
-    '  background: radial-gradient(circle, rgba(255,105,255,0.6), rgba(0,221,255,0.15) 60%, transparent 70%);' +
-    '  z-index: 9998;' +
-    '  transform: translate(-50%, -50%);' +
-    '  will-change: left, top;' +
-    '}' +
+
     '' +
     '/* Visitor counter odometer digits */' +
     '.counter-digit {' +
@@ -84,8 +73,8 @@
     el.className = 'sparkle';
     el.textContent = GLYPHS[Math.random() * GLYPHS.length | 0];
     el.style.color = COLORS[Math.random() * COLORS.length | 0];
-    el.style.left = (e.clientX + (Math.random() - 0.5) * 12) + 'px';
-    el.style.top = (e.clientY + (Math.random() - 0.5) * 12) + 'px';
+    el.style.left = e.clientX + 'px';
+    el.style.top = e.clientY + 'px';
 
     el.addEventListener('animationend', function () {
       el.remove();
@@ -161,34 +150,6 @@
       .map(function (d) { return '<span class="counter-digit">' + d + '</span>'; })
       .join('');
   }
-
-
-  /* ── Cursor Glow ──
-     A small radial-gradient circle that smoothly follows the mouse
-     with a gentle lerp delay for a trailing glow effect.
-  */
-  var glow = document.createElement('div');
-  glow.id = 'cursor-glow';
-  document.body.appendChild(glow);
-
-  var targetX = window.innerWidth / 2;
-  var targetY = window.innerHeight / 2;
-  var currentX = targetX;
-  var currentY = targetY;
-
-  document.addEventListener('mousemove', function (e) {
-    targetX = e.clientX;
-    targetY = e.clientY;
-  }, { passive: true });
-
-  function animateGlow() {
-    currentX += (targetX - currentX) * 0.3;
-    currentY += (targetY - currentY) * 0.3;
-    glow.style.left = currentX + 'px';
-    glow.style.top = currentY + 'px';
-    requestAnimationFrame(animateGlow);
-  }
-  animateGlow();
 
 
   /* ── Page Entry Animation ──
