@@ -2,28 +2,10 @@
   'use strict';
 
   /* ── Inject Effect Styles ──
-     Inline CSS for all effects so no external stylesheet is needed.
+     Inline CSS for visitor counter + page entry animation.
   */
   var styleEl = document.createElement('style');
   styleEl.textContent =
-    '/* Sparkle cursor trail */' +
-    '@keyframes sparkle-float {' +
-    '  0%   { opacity: 1; transform: translateY(0) scale(1); }' +
-    '  100% { opacity: 0; transform: translateY(-20px) scale(0.3); }' +
-    '}' +
-    '.sparkle {' +
-    '  position: fixed;' +
-    '  pointer-events: none;' +
-    '  font-size: 18px;' +
-    '  z-index: 9999;' +
-    '  animation: sparkle-float 1.5s ease-out forwards;' +
-    '  will-change: transform, opacity;' +
-    '  line-height: 1;' +
-    '}' +
-    '' +
-
-    '' +
-    '/* Visitor counter odometer digits */' +
     '.counter-digit {' +
     '  display: inline-block;' +
     '  min-width: 1em;' +
@@ -37,8 +19,6 @@
     '  color: #ffd700;' +
     '  text-shadow: 0 0 6px rgba(255,215,0,0.5);' +
     '}' +
-    '' +
-    '/* Page entry fade-in + slide-up */' +
     'body:not(.page-entered) {' +
     '  opacity: 0;' +
     '  transform: translateY(15px);' +
@@ -50,75 +30,8 @@
     '}';
   document.head.appendChild(styleEl);
 
-
-  /* ── Sparkle Cursor Trail ──
-     Spawns floating sparkle particles at the cursor position.
-     Each sparkle floats up and fades out over 1.5 s.
-     Throttled to 60 ms intervals, capped at 30 simultaneous particles.
-  */
-  var GLYPHS = ['✦', '✧', '★', '·', '✨', '•'];
-  var COLORS = ['#ff69ff', '#00ddff', '#ffd700', '#ffffff', '#ff6b6b', '#48dbfb'];
-  var MAX_SPARKLES = 30;
-  var SPAWN_THROTTLE = 60;
-
-  var sparkleCount = 0;
-  var lastSpawn = 0;
-
-  document.addEventListener('mousemove', function (e) {
-    var now = Date.now();
-    if (now - lastSpawn < SPAWN_THROTTLE || sparkleCount >= MAX_SPARKLES) return;
-    lastSpawn = now;
-
-    var el = document.createElement('span');
-    el.className = 'sparkle';
-    el.textContent = GLYPHS[Math.random() * GLYPHS.length | 0];
-    el.style.color = COLORS[Math.random() * COLORS.length | 0];
-    el.style.left = e.clientX + 'px';
-    el.style.top = e.clientY + 'px';
-
-    el.addEventListener('animationend', function () {
-      el.remove();
-      sparkleCount--;
-    });
-
-    document.body.appendChild(el);
-    sparkleCount++;
-  }, { passive: true });
-
-
-  /* ── Starfield Parallax (optional) ──
-     Shifts background-position of .starfield / .bg-stars elements
-     by 1–3 px in response to mouse movement (relative to viewport center).
-     Only activates if matching elements exist in the DOM.
-  */
-  var starfields = document.querySelectorAll('.starfield, .bg-stars');
-  if (starfields.length) {
-    var mouseX = 0;
-    var mouseY = 0;
-
-    document.addEventListener('mousemove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    }, { passive: true });
-
-    function updateParallax() {
-      var cx = window.innerWidth / 2;
-      var cy = window.innerHeight / 2;
-      var dx = (mouseX - cx) / cx * 2.5;
-      var dy = (mouseY - cy) / cy * 2.5;
-
-      for (var i = 0; i < starfields.length; i++) {
-        starfields[i].style.backgroundPosition = 'calc(50% + ' + dx + 'px) calc(50% + ' + dy + 'px)';
-      }
-      requestAnimationFrame(updateParallax);
-    }
-    updateParallax();
-  }
-
-
   /* ── Live Clock ──
-     Finds the element with [data-clock] and updates its textContent
-     every second with the current time in HH:MM:SS format.
+     Updates [data-clock] every second with HH:MM:SS.
   */
   var clockEl = document.querySelector('[data-clock]');
   if (clockEl) {
@@ -129,12 +42,8 @@
     setInterval(tick, 1000);
   }
 
-
   /* ── Visitor Counter ──
-     Reads/writes visitorCount from localStorage.
-     On first visit: random value between 4000–9000.
-     On subsequent visits: increment by 1.
-     Displays as 6 zero-padded digits, each in its own .counter-digit span.
+     localStorage-based counter, 6-digit odometer display.
   */
   var counterEl = document.querySelector('[data-visitor-counter]');
   if (counterEl) {
@@ -151,11 +60,8 @@
       .join('');
   }
 
-
   /* ── Page Entry Animation ──
-     Adds .page-entered to <body> on DOMContentLoaded,
-     which triggers the CSS fade-in + slide-up transition
-     defined in the injected styles above.
+     Fade-in + slide-up on load via CSS transition.
   */
   document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.add('page-entered');
