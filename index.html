@@ -26,9 +26,9 @@
         />
         <meta property="og:url" content="https://jonathan.com.ar/" />
         <meta property="og:type" content="website" />
-        <title>jd-apprentice@portfolio:~$</title>
+        <title>jd-apprentice@portfolio:~$ ★ 90s ANIME TERMINAL ★</title>
         <link
-            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            href="https://fonts.googleapis.com/css2?family=VT323&family=Russo+One&family=Press+Start+2P&display=swap"
             rel="stylesheet"
         />
         <script
@@ -36,7 +36,27 @@
             src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
         ></script>
         <style>
-            /* ── RESET ── */
+            /* ═══════════════════════════════════════════════════
+       90s ANIME TERMINAL — DESIGN TOKENS & RESET
+       ═══════════════════════════════════════════════════ */
+            :root {
+                --bg-deep: #0a0015;
+                --bg-mid: #150025;
+                --bg-term: #0c0c0c;
+                --cyan: #00ddff;
+                --pink: #ff69ff;
+                --gold: #ffd700;
+                --teal: #39c5bb;
+                --hotpink: #ff1493;
+                --green: #00ff41;
+                --soft-purple: #bb99ff;
+                --light: #f0e6ff;
+                --neon-shadow:
+                    0 0 10px rgba(0, 221, 255, 0.15),
+                    0 0 30px rgba(255, 105, 255, 0.08);
+                --border-neon: 1px solid rgba(255, 105, 255, 0.25);
+            }
+
             *,
             *::before,
             *::after {
@@ -45,23 +65,209 @@
                 padding: 0;
             }
 
-            /* ── CRT BASE ── */
+            /* ═══════════════════════════════════════════════════
+       BODY — Deep space gradient + 90s cursor
+       ═══════════════════════════════════════════════════ */
             body {
-                background: #050505;
-                color: #00ff41;
+                background: var(--bg-deep);
+                color: var(--cyan);
                 font-family: "VT323", "Courier New", monospace;
                 font-size: 18px;
                 line-height: 1.35;
                 min-height: 100vh;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                padding: 16px;
+                padding: 12px 16px 20px;
                 overflow-x: hidden;
                 text-rendering: optimizeSpeed;
+                cursor: crosshair;
             }
 
-            /* scanlines overlay */
+            /* ═══════════════════════════════════════════════════
+       STARFIELD — 3 layers of twinkling stars
+       Uses box-shadow technique + CSS animation
+       ═══════════════════════════════════════════════════ */
+            .bg-stars {
+                position: fixed;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background: linear-gradient(
+                    180deg,
+                    #0a0015 0%,
+                    #120020 40%,
+                    #1a0030 100%
+                );
+            }
+
+            .star-layer {
+                position: absolute;
+                inset: 0;
+                will-change: transform;
+            }
+
+            #stars {
+                width: 2px;
+                height: 2px;
+                background: transparent;
+                box-shadow:
+                    124px 85px rgba(255, 255, 255, 0.8),
+                    580px 220px rgba(255, 255, 255, 0.6),
+                    940px 140px rgba(255, 255, 255, 0.7),
+                    210px 480px rgba(255, 255, 255, 0.5),
+                    760px 610px rgba(255, 255, 255, 0.6),
+                    340px 780px rgba(255, 255, 255, 0.7),
+                    1020px 350px rgba(255, 255, 255, 0.5),
+                    150px 920px rgba(255, 255, 255, 0.6),
+                    620px 1050px rgba(255, 255, 255, 0.7),
+                    880px 890px rgba(255, 255, 255, 0.5),
+                    440px 170px rgba(255, 255, 255, 0.8),
+                    1150px 520px rgba(255, 255, 255, 0.6),
+                    290px 650px rgba(255, 255, 255, 0.7),
+                    700px 250px rgba(255, 255, 255, 0.5),
+                    510px 420px rgba(255, 255, 255, 0.8),
+                    400px 1120px rgba(255, 255, 255, 0.5),
+                    960px 730px rgba(255, 255, 255, 0.6),
+                    180px 540px rgba(255, 255, 255, 0.7),
+                    670px 380px rgba(255, 255, 255, 0.5),
+                    1050px 190px rgba(255, 255, 255, 0.6),
+                    830px 480px rgba(255, 255, 255, 0.7),
+                    260px 100px rgba(255, 255, 255, 0.5),
+                    1300px 310px rgba(255, 255, 255, 0.8),
+                    50px 1030px rgba(255, 255, 255, 0.5),
+                    780px 1320px rgba(255, 255, 255, 0.6),
+                    430px 750px rgba(255, 255, 255, 0.7),
+                    1190px 590px rgba(255, 255, 255, 0.5),
+                    540px 960px rgba(255, 255, 255, 0.6),
+                    910px 120px rgba(255, 255, 255, 0.7),
+                    360px 1380px rgba(255, 255, 255, 0.5),
+                    1450px 240px rgba(255, 255, 255, 0.6),
+                    110px 580px rgba(255, 255, 255, 0.8),
+                    990px 850px rgba(255, 255, 255, 0.5),
+                    650px 1270px rgba(255, 255, 255, 0.6),
+                    460px 310px rgba(255, 255, 255, 0.7),
+                    720px 1160px rgba(255, 255, 255, 0.5),
+                    1380px 430px rgba(255, 255, 255, 0.6),
+                    190px 440px rgba(255, 255, 255, 0.8),
+                    1210px 760px rgba(255, 255, 255, 0.5),
+                    310px 1240px rgba(255, 255, 255, 0.7),
+                    810px 640px rgba(255, 255, 255, 0.6),
+                    160px 150px rgba(255, 255, 255, 0.5),
+                    1520px 500px rgba(255, 255, 255, 0.7),
+                    560px 200px rgba(255, 255, 255, 0.5),
+                    140px 800px rgba(255, 255, 255, 0.6),
+                    1100px 420px rgba(255, 255, 255, 0.7),
+                    640px 550px rgba(255, 255, 255, 0.5),
+                    370px 1450px rgba(255, 255, 255, 0.6),
+                    1780px 320px rgba(255, 255, 255, 0.5),
+                    1630px 610px rgba(255, 255, 255, 0.6);
+                animation: twinkle1 6s ease-in-out infinite alternate;
+            }
+
+            #stars2 {
+                width: 3px;
+                height: 3px;
+                background: transparent;
+                box-shadow:
+                    460px 350px rgba(255, 255, 255, 0.5),
+                    890px 120px rgba(255, 255, 255, 0.4),
+                    150px 620px rgba(255, 255, 255, 0.6),
+                    740px 450px rgba(255, 255, 255, 0.5),
+                    1280px 280px rgba(255, 255, 255, 0.4),
+                    390px 880px rgba(255, 255, 255, 0.5),
+                    1050px 510px rgba(255, 255, 255, 0.6),
+                    220px 1080px rgba(255, 255, 255, 0.4),
+                    680px 960px rgba(255, 255, 255, 0.5),
+                    550px 180px rgba(255, 255, 255, 0.6),
+                    1350px 650px rgba(255, 255, 255, 0.4),
+                    80px 340px rgba(255, 255, 255, 0.5),
+                    430px 1260px rgba(255, 255, 255, 0.6),
+                    970px 830px rgba(255, 255, 255, 0.4),
+                    740px 1180px rgba(255, 255, 255, 0.5),
+                    190px 500px rgba(255, 255, 255, 0.6),
+                    520px 720px rgba(255, 255, 255, 0.4),
+                    1160px 380px rgba(255, 255, 255, 0.5),
+                    310px 1540px rgba(255, 255, 255, 0.6),
+                    690px 1640px rgba(255, 255, 255, 0.4),
+                    870px 1360px rgba(255, 255, 255, 0.5),
+                    1270px 890px rgba(255, 255, 255, 0.6),
+                    240px 230px rgba(255, 255, 255, 0.4),
+                    1410px 720px rgba(255, 255, 255, 0.5),
+                    1090px 1010px rgba(255, 255, 255, 0.6),
+                    610px 1420px rgba(255, 255, 255, 0.4),
+                    330px 410px rgba(255, 255, 255, 0.5),
+                    1570px 180px rgba(255, 255, 255, 0.6),
+                    1020px 680px rgba(255, 255, 255, 0.4),
+                    480px 1340px rgba(255, 255, 255, 0.5);
+                animation: twinkle2 8s ease-in-out infinite alternate;
+            }
+
+            #stars3 {
+                width: 4px;
+                height: 4px;
+                background: transparent;
+                box-shadow:
+                    680px 490px rgba(255, 255, 255, 0.7),
+                    250px 820px rgba(255, 255, 255, 0.6),
+                    930px 250px rgba(255, 255, 255, 0.5),
+                    1120px 640px rgba(255, 255, 255, 0.7),
+                    380px 1150px rgba(255, 255, 255, 0.6),
+                    780px 350px rgba(255, 255, 255, 0.5),
+                    560px 750px rgba(255, 255, 255, 0.7),
+                    1250px 420px rgba(255, 255, 255, 0.6),
+                    170px 940px rgba(255, 255, 255, 0.5),
+                    1440px 680px rgba(255, 255, 255, 0.7),
+                    500px 140px rgba(255, 255, 255, 0.6),
+                    1060px 920px rgba(255, 255, 255, 0.5),
+                    330px 1640px rgba(255, 255, 255, 0.7),
+                    820px 1280px rgba(255, 255, 255, 0.6),
+                    1360px 540px rgba(255, 255, 255, 0.5),
+                    440px 640px rgba(255, 255, 255, 0.7),
+                    1650px 280px rgba(255, 255, 255, 0.6),
+                    1140px 140px rgba(255, 255, 255, 0.5),
+                    720px 1070px rgba(255, 255, 255, 0.7),
+                    980px 1520px rgba(255, 255, 255, 0.6);
+                animation: twinkle3 4s ease-in-out infinite alternate;
+            }
+
+            @keyframes twinkle1 {
+                0% {
+                    opacity: 0.5;
+                }
+                50% {
+                    opacity: 0.9;
+                }
+                100% {
+                    opacity: 0.6;
+                }
+            }
+            @keyframes twinkle2 {
+                0% {
+                    opacity: 0.4;
+                }
+                40% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0.5;
+                }
+            }
+            @keyframes twinkle3 {
+                0% {
+                    opacity: 0.6;
+                }
+                60% {
+                    opacity: 0.3;
+                }
+                100% {
+                    opacity: 0.9;
+                }
+            }
+
+            /* ═══════════════════════════════════════════════════
+       SCANLINES overlay (kept from original, purple-tinted)
+       ═══════════════════════════════════════════════════ */
             body::after {
                 content: "";
                 position: fixed;
@@ -70,14 +276,14 @@
                     0deg,
                     transparent,
                     transparent 2px,
-                    rgba(0, 255, 65, 0.04) 2px,
-                    rgba(0, 255, 65, 0.04) 4px
+                    rgba(187, 153, 255, 0.035) 2px,
+                    rgba(187, 153, 255, 0.035) 4px
                 );
                 pointer-events: none;
                 z-index: 999;
             }
 
-            /* CRT screen flicker */
+            /* CRT flicker (kept) */
             @keyframes flicker {
                 0% {
                     opacity: 0.97;
@@ -108,35 +314,432 @@
                 }
             }
 
-            /* ── TERMINAL WINDOW ── */
+            /* ═══════════════════════════════════════════════════
+       RETRO CONSTRUCTION BANNER
+       ═══════════════════════════════════════════════════ */
+            .construction-banner {
+                position: relative;
+                z-index: 10;
+                width: 100%;
+                max-width: 880px;
+                margin: 0 auto 8px;
+                padding: 8px 16px;
+                background: repeating-linear-gradient(
+                    45deg,
+                    #111 0px,
+                    #111 10px,
+                    #ffd700 10px,
+                    #ffd700 20px
+                );
+                text-align: center;
+                border: 2px solid #ff1493;
+                border-radius: 4px;
+                font-family: "Press Start 2P", monospace;
+                font-size: 10px;
+                color: #fff;
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+                letter-spacing: 4px;
+                box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+                overflow: hidden;
+            }
+            .construction-banner span {
+                display: inline-block;
+                animation: bannerPulse 1.5s ease-in-out infinite;
+            }
+            .construction-banner .spinner {
+                display: inline-block;
+                animation: spin 2s linear infinite;
+                margin-right: 4px;
+            }
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes bannerPulse {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.7;
+                }
+            }
+
+            /* ═══════════════════════════════════════════════════
+       MARQUEE — CSS scrolling text (no deprecated marquee tag)
+       ═══════════════════════════════════════════════════ */
+            .marquee-wrap {
+                position: relative;
+                z-index: 10;
+                width: 100%;
+                max-width: 880px;
+                margin: 0 auto 10px;
+                overflow: hidden;
+                background: rgba(12, 12, 12, 0.6);
+                border: 1px solid rgba(255, 105, 255, 0.2);
+                border-radius: 4px;
+                padding: 4px 0;
+                height: 30px;
+                display: flex;
+                align-items: center;
+            }
+            .marquee-track {
+                display: flex;
+                white-space: nowrap;
+                animation: marqueeScroll 35s linear infinite;
+            }
+            .marquee-track:hover {
+                animation-play-state: paused;
+            }
+            .marquee-text {
+                padding: 0 16px;
+                font-family: "Russo One", sans-serif;
+                font-size: 16px;
+                letter-spacing: 2px;
+                background: linear-gradient(
+                    90deg,
+                    #ff69ff,
+                    #00ddff,
+                    #ffd700,
+                    #ff1493,
+                    #39c5bb,
+                    #ff69ff
+                );
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: rainbowShift 6s linear infinite;
+            }
+            @keyframes marqueeScroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+            @keyframes rainbowShift {
+                to {
+                    background-position: 200% center;
+                }
+            }
+
+            /* ═══════════════════════════════════════════════════
+       TERMINAL WRAPPER — flex row with character sidebars
+       ═══════════════════════════════════════════════════ */
+            .terminal-wrapper {
+                position: relative;
+                z-index: 10;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 16px;
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            /* ── Character side decorations ── */
+            .char-side {
+                flex: 0 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                padding-top: 50px;
+                width: 130px;
+            }
+            .char-frame {
+                border: 2px solid transparent;
+                border-image: linear-gradient(135deg, #ff1493, #ffd700, #39c5bb)
+                    1;
+                padding: 4px;
+                background: rgba(12, 12, 12, 0.85);
+                box-shadow:
+                    0 0 24px rgba(255, 105, 255, 0.25),
+                    0 0 60px rgba(0, 221, 255, 0.1);
+                border-radius: 4px;
+                transition: box-shadow 0.4s ease;
+            }
+            .char-frame:hover {
+                box-shadow:
+                    0 0 40px rgba(255, 105, 255, 0.45),
+                    0 0 80px rgba(0, 221, 255, 0.2);
+            }
+            .char-frame img {
+                display: block;
+                width: 120px;
+                height: auto;
+                image-rendering: pixelated;
+            }
+            .char-label {
+                color: var(--soft-purple);
+                font-family: "Press Start 2P", monospace;
+                font-size: 8px;
+                text-align: center;
+                text-shadow: 0 0 10px rgba(187, 153, 255, 0.4);
+                letter-spacing: 1px;
+            }
+
+            /* ═══════════════════════════════════════════════════
+       BIG RETRO BANNER — inspired by sammwy.com
+       ═══════════════════════════════════════════════════ */
+            .big-banner {
+                position: relative;
+                z-index: 10;
+                width: 100%;
+                max-width: 880px;
+                margin: 0 auto 14px;
+                border-radius: 10px;
+                padding: 0;
+            }
+            .big-banner::before {
+                content: "";
+                position: absolute;
+                inset: -1px;
+                border-radius: 11px;
+                padding: 1px;
+                background: linear-gradient(135deg, #ff1493, #39c5bb, #ffd700, #ff69ff, #00ddff);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+                z-index: 998;
+                opacity: 0.5;
+            }
+            .banner-inner {
+                background: linear-gradient(
+                    180deg,
+                    #0f001a 0%,
+                    #1a0030 50%,
+                    #0f001a 100%
+                );
+                border-radius: 9px;
+                padding: 0;
+                overflow: hidden;
+                position: relative;
+                line-height: 0;
+            }
+            .banner-inner::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 105, 255, 0.03) 2px,
+                    rgba(255, 105, 255, 0.03) 4px
+                );
+                pointer-events: none;
+                z-index: 1;
+            }
+            .banner-frieren {
+                display: block;
+                width: 100%;
+                height: 130px;
+                object-fit: cover;
+                object-position: center 75%;
+                image-rendering: pixelated;
+            }
+
+            /* ═══════════════════════════════════════════════════
+       ABOUT + MIKU REGION — flex layout outside terminal
+       ═══════════════════════════════════════════════════ */
+            .about-region {
+                position: relative;
+                z-index: 10;
+                display: flex;
+                gap: 20px;
+                width: 100%;
+                max-width: 880px;
+                margin: 0 auto 14px;
+                align-items: stretch;
+            }
+    .about-content {
+      flex: 1;
+      min-width: 0;
+      background: rgba(12,12,12,0.6);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .about-content::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 9px;
+      padding: 1px;
+      background: linear-gradient(135deg, #ff1493, #39c5bb, #ffd700, #ff69ff, #00ddff);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 998;
+      opacity: 0.5;
+    }
+            .about-header-inline {
+                display: flex;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            .about-avatar {
+                flex-shrink: 0;
+                border-radius: 4px;
+                border: 1px solid rgba(255, 105, 255, 0.2);
+                padding: 2px;
+                filter: sepia(0.3) hue-rotate(240deg) saturate(1.8)
+                    brightness(1.1) contrast(1.1);
+                image-rendering: pixelated;
+            }
+            .about-text-block {
+                flex: 1;
+                min-width: 0;
+            }
+            .about-heading {
+                color: var(--pink);
+                font-size: 20px;
+                margin-bottom: 4px;
+                text-shadow: 0 0 12px rgba(255, 105, 255, 0.3);
+            }
+            .about-sub {
+                color: var(--cyan);
+                line-height: 1.5;
+                font-size: 16px;
+            }
+            .about-bio {
+                color: var(--cyan);
+                line-height: 1.5;
+                font-size: 16px;
+            }
+            .about-row {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            .about-roadmap {
+                flex: 1;
+                min-width: 180px;
+                color: var(--cyan);
+                line-height: 1.55;
+                font-size: 16px;
+            }
+            .about-interests {
+                flex: 1;
+                min-width: 180px;
+                color: var(--soft-purple);
+                line-height: 1.55;
+                font-size: 16px;
+            }
+    .about-miku-card {
+      flex: 0 0 auto;
+      width: 160px;
+      display: flex;
+      align-items: stretch;
+    }
+    .miku-frame-inner {
+      width: 100%;
+      padding: 4px;
+      background: transparent;
+      border-radius: 6px;
+      position: relative;
+      display: flex;
+    }
+    .miku-frame-inner::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 7px;
+      padding: 1px;
+      background: linear-gradient(135deg, #ff1493, #39c5bb, #ffd700, #ff69ff, #00ddff);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 998;
+      opacity: 0.5;
+    }
+    .miku-frame-inner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      image-rendering: pixelated;
+      border-radius: 2px;
+      align-self: center;
+    }
+
+            /* ═══════════════════════════════════════════════════
+       TERMINAL WINDOW — retro app frame with neon glow
+       ═══════════════════════════════════════════════════ */
             .terminal {
                 width: 100%;
                 max-width: 880px;
                 max-height: min(92vh, 760px);
-                background: #0c0c0c;
-                border: 1px solid #003300;
+                background: var(--bg-term);
+                border: 1px solid rgba(255, 105, 255, 0.3);
                 border-radius: 8px;
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;
                 box-shadow:
-                    0 0 20px rgba(0, 255, 65, 0.08),
-                    0 0 50px rgba(0, 255, 65, 0.04),
-                    inset 0 0 40px rgba(0, 0, 0, 0.6);
+                    0 0 15px rgba(255, 20, 147, 0.15),
+                    0 0 40px rgba(0, 221, 255, 0.08),
+                    0 0 80px rgba(255, 105, 255, 0.05),
+                    inset 0 0 50px rgba(0, 0, 0, 0.5),
+                    inset 0 0 2px rgba(255, 105, 255, 0.1);
                 animation: flicker 6s infinite;
                 position: relative;
             }
+            /* Multicolored inner border glow */
+            .terminal::before {
+                content: "";
+                position: absolute;
+                inset: -1px;
+                border-radius: 9px;
+                padding: 1px;
+                background: linear-gradient(
+                    135deg,
+                    #ff1493,
+                    #39c5bb,
+                    #ffd700,
+                    #ff69ff,
+                    #00ddff
+                );
+                -webkit-mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+                z-index: 998;
+                opacity: 0.5;
+            }
 
-            /* ── TITLE BAR ── */
+            /* ═══════════════════════════════════════════════════
+       TITLE BAR — Rainbow gradient + colored dots
+       ═══════════════════════════════════════════════════ */
             .titlebar {
-                background: #001a00;
-                padding: 6px 12px;
+                background: linear-gradient(
+                    90deg,
+                    #ff1493,
+                    #d435a0,
+                    #39c5bb,
+                    #ffd700
+                );
+                padding: 5px 12px;
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                border-bottom: 1px solid #003300;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
                 flex-shrink: 0;
                 user-select: none;
+                min-height: 32px;
             }
             .titlebar-dots {
                 display: flex;
@@ -146,33 +749,55 @@
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                border: 1px solid rgba(0, 255, 65, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.3);
             }
             .titlebar-dot.red {
-                background: #330000;
+                background: #ff3b30;
+                border-color: #ff6b6b;
+                box-shadow: 0 0 4px rgba(255, 59, 48, 0.6);
             }
             .titlebar-dot.yellow {
-                background: #332200;
+                background: #ffd700;
+                border-color: #fff176;
+                box-shadow: 0 0 4px rgba(255, 215, 0, 0.6);
             }
             .titlebar-dot.green {
-                background: #003300;
+                background: #34c759;
+                border-color: #69db7c;
+                box-shadow: 0 0 4px rgba(52, 199, 89, 0.6);
             }
             .titlebar-text {
-                color: #008800;
-                font-size: 15px;
-                letter-spacing: 0.04em;
-            }
-            .titlebar-text .highlight {
-                color: #00cc00;
+                flex: 1;
+                font-family: "Russo One", sans-serif;
+                font-size: 14px;
+                letter-spacing: 1px;
+                color: transparent;
+                background: linear-gradient(
+                    90deg,
+                    #fff,
+                    #fff176,
+                    #fff,
+                    #e0e0ff
+                );
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: rainbowShift 4s linear infinite;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
 
-            /* ── SCREEN (scrollable content) ── */
+            /* ═══════════════════════════════════════════════════
+       SCREEN — scrollable content area
+       ═══════════════════════════════════════════════════ */
             .screen {
                 flex: 1;
                 overflow-y: auto;
-                padding: 20px 22px 12px;
+                padding: 18px 20px 12px;
                 scrollbar-width: thin;
-                scrollbar-color: #003300 transparent;
+                scrollbar-color: rgba(255, 105, 255, 0.2) transparent;
             }
             .screen::-webkit-scrollbar {
                 width: 6px;
@@ -181,74 +806,25 @@
                 background: transparent;
             }
             .screen::-webkit-scrollbar-thumb {
-                background: #003300;
+                background: rgba(255, 105, 255, 0.25);
                 border-radius: 3px;
             }
 
-            /* ── STATUS BAR (audio) ── */
-            .statusbar {
-                flex-shrink: 0;
-                background: #001100;
-                border-top: 1px solid #003300;
-                padding: 6px 14px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 12px;
-                font-size: 16px;
-                color: #006600;
-            }
-            .statusbar audio {
-                display: none;
-            }
-            .statusbar-controls {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            .statusbar-btn {
-                background: none;
-                border: 1px solid #003300;
-                color: #00aa00;
-                font-family: inherit;
-                font-size: 16px;
-                padding: 2px 8px;
-                cursor: pointer;
-                transition:
-                    background 0.15s,
-                    color 0.15s;
-                border-radius: 3px;
-            }
-            .statusbar-btn:hover {
-                background: #003300;
-                color: #00ff41;
-            }
-            .statusbar-song {
-                color: #007700;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                text-align: right;
-                flex: 1;
-                min-width: 0;
-            }
-            .statusbar-song .now-playing {
-                color: #00aa00;
-            }
-
-            /* ── TYPOGRAPHY ── */
+            /* ═══════════════════════════════════════════════════
+       TYPOGRAPHY — neon colors throughout
+       ═══════════════════════════════════════════════════ */
             a {
-                color: #00cc00;
+                color: var(--teal);
                 text-decoration: underline;
                 text-underline-offset: 3px;
-                text-decoration-color: #004400;
+                text-decoration-color: rgba(57, 197, 187, 0.3);
                 transition:
                     color 0.15s,
                     text-decoration-color 0.15s;
             }
             a:hover {
-                color: #00ff41;
-                text-decoration-color: #00ff41;
+                color: var(--cyan);
+                text-decoration-color: var(--cyan);
             }
 
             /* ── PROMPT ── */
@@ -256,33 +832,39 @@
                 display: flex;
                 align-items: center;
                 gap: 4px;
-                color: #00aa00;
+                color: var(--soft-purple);
                 font-size: 18px;
                 margin: 6px 0;
             }
+            .prompt-line .prompt {
+                color: var(--green);
+                text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+            }
             .prompt-line .cmd {
-                color: #00ff41;
+                color: var(--cyan);
             }
             .terminal-input {
                 flex: 1;
                 background: transparent;
                 border: none;
                 outline: none;
-                color: #00ff41;
+                color: var(--cyan);
                 font-family: inherit;
                 font-size: inherit;
                 line-height: inherit;
                 padding: 0;
                 margin: 0;
-                caret-color: #00ff41;
+                caret-color: var(--cyan);
                 min-width: 20px;
             }
             .terminal-input::selection {
-                background: #003300;
-                color: #00ff41;
+                background: rgba(0, 221, 255, 0.3);
+                color: var(--light);
             }
 
-            /* ── COMMANDS GRID ── */
+            /* ═══════════════════════════════════════════════════
+       COMMANDS GRID
+       ═══════════════════════════════════════════════════ */
             .cmd-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -291,8 +873,8 @@
             }
             .cmd-btn {
                 background: transparent;
-                border: 1px solid #002a00;
-                color: #00aa00;
+                border: 1px solid rgba(255, 105, 255, 0.15);
+                color: var(--soft-purple);
                 font-family: inherit;
                 font-size: 17px;
                 padding: 6px 12px;
@@ -301,40 +883,45 @@
                 transition:
                     background 0.15s,
                     color 0.15s,
-                    border-color 0.15s;
+                    border-color 0.15s,
+                    box-shadow 0.15s;
                 border-radius: 3px;
             }
             .cmd-btn:hover,
             .cmd-btn.active {
-                background: #001a00;
-                color: #00ff41;
-                border-color: #005500;
+                background: rgba(255, 105, 255, 0.08);
+                color: var(--cyan);
+                border-color: rgba(0, 221, 255, 0.4);
+                box-shadow: 0 0 12px rgba(0, 221, 255, 0.1);
             }
             .cmd-btn .prompt {
-                color: #007700;
+                color: var(--green);
             }
             .cmd-btn .name {
-                color: #00cc00;
+                color: var(--pink);
             }
 
-            /* ── SECTION OUTPUT ── */
+            /* ═══════════════════════════════════════════════════
+       SECTION OUTPUT
+       ═══════════════════════════════════════════════════ */
             .output {
                 margin: 8px 0 4px;
                 padding: 10px 14px;
-                border-left: 2px solid #003300;
+                border-left: 2px solid rgba(255, 105, 255, 0.3);
             }
             .output-title {
-                color: #00ff41;
+                color: var(--pink);
                 font-size: 20px;
                 margin-bottom: 8px;
+                text-shadow: 0 0 12px rgba(255, 105, 255, 0.3);
             }
             .output-text {
-                color: #00bb00;
+                color: var(--cyan);
                 line-height: 1.55;
                 margin-bottom: 10px;
             }
 
-            /* -- persistent about header -- */
+            /* ── persistent about header ── */
             .about-header {
                 display: flex;
                 gap: 16px;
@@ -352,32 +939,56 @@
                 margin-bottom: 0;
             }
 
-            /* -- separator line -- */
-            .separator {
-                height: 1px;
-                background: #003300;
-                margin: 14px 0 8px;
-                border: none;
-            }
-
-            /* -- about profile pic -- */
+            /* ── profile pic ── */
             .profile-pic {
                 flex-shrink: 0;
-                border: 1px solid #003300;
+                border: 1px solid rgba(255, 105, 255, 0.25);
                 border-radius: 4px;
                 padding: 3px;
+                box-shadow: 0 0 15px rgba(255, 105, 255, 0.15);
             }
             .profile-pic img {
                 display: block;
                 width: 96px;
                 height: 96px;
                 border-radius: 2px;
-                filter: sepia(1) hue-rotate(80deg) saturate(2) brightness(0.8)
-                    contrast(1.2);
+                filter: sepia(0.3) hue-rotate(240deg) saturate(1.8)
+                    brightness(1.1) contrast(1.1);
                 image-rendering: pixelated;
             }
 
-            /* -- skills tags -- */
+            /* ── 90s retro divider ── */
+            .separator {
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--pink),
+                    var(--cyan),
+                    var(--gold),
+                    var(--pink),
+                    transparent
+                );
+                margin: 14px 0 8px;
+                border: none;
+            }
+            /* Additional thick retro divider for extra 90s feel */
+            .divider-90s {
+                height: 4px;
+                background: linear-gradient(
+                    90deg,
+                    var(--hotpink),
+                    var(--teal),
+                    var(--gold),
+                    var(--hotpink)
+                );
+                margin: 16px 0 10px;
+                border: none;
+                border-radius: 2px;
+                box-shadow: 0 0 10px rgba(255, 20, 147, 0.2);
+            }
+
+            /* ── skills tags ── */
             .skill-tags {
                 display: flex;
                 flex-wrap: wrap;
@@ -385,66 +996,74 @@
                 margin: 8px 0;
             }
             .skill-tag {
-                border: 1px solid #003300;
+                border: 1px solid rgba(0, 221, 255, 0.2);
                 padding: 2px 10px;
-                color: #00bb00;
+                color: var(--cyan);
                 font-size: 16px;
                 border-radius: 3px;
+                transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+            }
+            .skill-tag:hover {
+                border-color: var(--pink);
+                box-shadow: 0 0 10px rgba(255, 105, 255, 0.15);
             }
 
-            /* -- project rows -- */
+            /* ── project rows ── */
             .project-row {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 gap: 10px;
                 padding: 6px 10px;
-                border-bottom: 1px solid #002200;
+                border-bottom: 1px solid rgba(255, 105, 255, 0.08);
                 transition: background 0.12s;
+                text-decoration: none;
             }
             .project-row:hover {
-                background: #001100;
+                background: rgba(0, 221, 255, 0.05);
             }
             .project-row:last-child {
                 border-bottom: none;
             }
             .project-row .idx {
-                color: #005500;
+                color: rgba(255, 105, 255, 0.4);
                 min-width: 28px;
             }
             .project-row .pname {
-                color: #00cc00;
+                color: var(--teal);
                 flex: 1;
             }
             .project-row .plink {
-                color: #007700;
+                color: var(--soft-purple);
                 font-size: 15px;
             }
             .project-row:hover .plink {
-                color: #00ff41;
+                color: var(--gold);
             }
 
-            /* -- video rows -- */
+            /* ── video rows ── */
             .video-row {
                 display: block;
                 padding: 6px 10px;
-                border-bottom: 1px solid #002200;
+                border-bottom: 1px solid rgba(255, 105, 255, 0.08);
                 text-decoration: none;
                 transition: background 0.12s;
             }
             .video-row:hover {
-                background: #001100;
+                background: rgba(0, 221, 255, 0.05);
             }
             .video-row .vtitle {
-                color: #00cc00;
+                color: var(--teal);
             }
             .video-row .vsource {
-                color: #007700;
+                color: var(--soft-purple);
                 font-size: 15px;
                 margin-left: 6px;
             }
 
-            /* -- social links -- */
+            /* ── social links ── */
             .social-links {
                 display: flex;
                 flex-wrap: wrap;
@@ -453,23 +1072,293 @@
             }
             .social-link {
                 display: inline-block;
-                border: 1px solid #002a00;
+                border: 1px solid rgba(255, 105, 255, 0.2);
                 padding: 3px 12px;
-                color: #00aa00;
+                color: var(--soft-purple);
                 text-decoration: none;
                 border-radius: 3px;
                 font-size: 16px;
                 transition:
                     background 0.15s,
-                    color 0.15s;
+                    color 0.15s,
+                    border-color 0.15s,
+                    box-shadow 0.15s;
             }
             .social-link:hover {
-                background: #001a00;
-                color: #00ff41;
-                border-color: #005500;
+                background: rgba(255, 105, 255, 0.1);
+                color: var(--cyan);
+                border-color: rgba(0, 221, 255, 0.4);
+                box-shadow: 0 0 12px rgba(0, 221, 255, 0.1);
             }
 
-            /* ── TRANSITIONS ── */
+            /* ═══════════════════════════════════════════════════
+       90s RETRO DECORATIONS
+       ═══════════════════════════════════════════════════ */
+
+            /* ── BLINK (classic blink) ── */
+            .blink {
+                animation: blinkAnim 1s step-end infinite;
+            }
+            @keyframes blinkAnim {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            /* ── RAINBOW GLOW headings ── */
+            .rainbow-heading {
+                background: linear-gradient(
+                    90deg,
+                    var(--pink),
+                    var(--cyan),
+                    var(--gold),
+                    var(--hotpink),
+                    var(--teal),
+                    var(--pink)
+                );
+                background-size: 300% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: rainbowShift 4s linear infinite;
+                text-shadow: none;
+                filter: drop-shadow(0 0 8px rgba(255, 105, 255, 0.3));
+            }
+
+            /* ── NEW! badge ── */
+            .badge-new {
+                display: inline-block;
+                font-family: "Press Start 2P", monospace;
+                font-size: 8px;
+                color: var(--hotpink);
+                background: rgba(255, 20, 147, 0.12);
+                padding: 2px 6px;
+                border-radius: 3px;
+                margin-left: 6px;
+                vertical-align: middle;
+                animation: blinkAnim 1s step-end infinite;
+                border: 1px solid rgba(255, 20, 147, 0.3);
+                text-shadow: 0 0 8px rgba(255, 20, 147, 0.4);
+            }
+
+            /* ── Spinning globe ── */
+            .globe-spin {
+                display: inline-block;
+                animation: spin 3s linear infinite;
+                font-size: 16px;
+            }
+
+            /* ── Retro footer badge ── */
+            .badge-90s {
+                display: inline-block;
+                font-family: "Press Start 2P", monospace;
+                font-size: 7px;
+                padding: 3px 8px;
+                border: 1px solid rgba(255,105,255,0.3);
+                border-radius: 3px;
+                color: var(--soft-purple);
+                background: rgba(12,12,12,0.5);
+                letter-spacing: 0.5px;
+            }
+
+            /* ═══════════════════════════════════════════════════
+               ANIME QUOTES CAROUSEL
+               ═══════════════════════════════════════════════════ */
+            .quote-marquee {
+                position: relative;
+                z-index: 10;
+                width: 100%;
+                max-width: 880px;
+                margin: 8px auto 0;
+                overflow: hidden;
+                padding: 6px 0;
+                border-top: 1px solid rgba(255,105,255,0.1);
+                height: 30px;
+                display: flex;
+                align-items: center;
+            }
+            .quote-track {
+                display: flex;
+                white-space: nowrap;
+                animation: marqueeScroll 50s linear infinite;
+            }
+            .quote-track:hover {
+                animation-play-state: paused;
+            }
+            .quote-text {
+                padding: 0 30px;
+                font-family: "Russo One", sans-serif;
+                font-size: 14px;
+                letter-spacing: 2px;
+                background: linear-gradient(90deg, #ff69ff, #00ddff, #ffd700, #ff69ff);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: rainbowShift 5s linear infinite;
+            }
+
+            /* ═══════════════════════════════════════════════════
+       LUCY BOTTOM BANNER
+       ═══════════════════════════════════════════════════ */
+            .char-bottom-area {
+                position: relative;
+                z-index: 10;
+                width: 100%;
+                max-width: 880px;
+                margin: 12px auto 0;
+            }
+    .char-bottom-frame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      padding: 5px;
+      background: rgba(12,12,12,0.8);
+      box-shadow: 0 0 30px rgba(255,20,147,0.2), 0 0 60px rgba(255,215,0,0.1);
+      width: 100%;
+      min-height: 72px;
+      border-radius: 8px;
+      position: relative;
+    }
+    .char-bottom-frame::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 9px;
+      padding: 1px;
+      background: linear-gradient(135deg, #ff1493, #39c5bb, #ffd700, #ff69ff, #00ddff);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 998;
+      opacity: 0.5;
+    }
+            .char-bottom-frame img {
+                display: block;
+                width: 100%;
+                height: 118px;
+                object-fit: cover;
+                object-position: center 72%;
+                image-rendering: pixelated;
+                border-radius: 2px;
+            }
+            .char-bottom-frame .globe-spin {
+                font-size: 34px;
+            }
+
+            /* ═══════════════════════════════════════════════════
+       FOOTER BADGE ROW
+       ═══════════════════════════════════════════════════ */
+            .footer-badges {
+                position: relative;
+                z-index: 10;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                margin: 14px auto 0;
+                max-width: 880px;
+            }
+
+            /* ═══════════════════════════════════════════════════
+       STATUS BAR — audio player + extras
+       ═══════════════════════════════════════════════════ */
+            .statusbar {
+                flex-shrink: 0;
+                background: linear-gradient(
+                    90deg,
+                    rgba(12, 12, 12, 0.98),
+                    rgba(20, 0, 35, 0.98)
+                );
+                border-top: 1px solid rgba(255, 105, 255, 0.15);
+                padding: 5px 12px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                font-size: 15px;
+                color: var(--soft-purple);
+            }
+            .statusbar audio {
+                display: none;
+            }
+            .statusbar-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .statusbar-center {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 14px;
+            }
+            .statusbar-center .sep {
+                color: rgba(255, 105, 255, 0.3);
+            }
+            .statusbar-right {
+                flex: 1;
+                min-width: 0;
+                display: flex;
+                justify-content: flex-end;
+            }
+            .statusbar-controls {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .statusbar-btn {
+                background: none;
+                border: 1px solid rgba(255, 105, 255, 0.15);
+                color: var(--soft-purple);
+                font-family: inherit;
+                font-size: 15px;
+                padding: 1px 7px;
+                cursor: pointer;
+                transition:
+                    background 0.15s,
+                    color 0.15s,
+                    border-color 0.15s;
+                border-radius: 3px;
+            }
+            .statusbar-btn:hover {
+                background: rgba(255, 105, 255, 0.12);
+                color: var(--cyan);
+                border-color: rgba(0, 221, 255, 0.3);
+            }
+            .statusbar-song {
+                color: var(--soft-purple);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                text-align: right;
+            }
+            .statusbar-song .now-playing {
+                color: var(--pink);
+            }
+            .statusbar-icon {
+                width: auto;
+                height: 32px;
+                image-rendering: pixelated;
+                border-radius: 3px;
+                opacity: 0.85;
+            }
+            .clock-display {
+                font-family: "VT323", monospace;
+                color: var(--cyan);
+                text-shadow: 0 0 6px rgba(0, 221, 255, 0.3);
+                font-size: 16px;
+            }
+            .visitor-counter-label {
+                color: var(--soft-purple);
+                font-size: 13px;
+            }
+
+            /* ═══════════════════════════════════════════════════
+       TRANSITIONS
+       ═══════════════════════════════════════════════════ */
             .fade-enter {
                 animation: fadeIn 0.25s ease-out;
             }
@@ -484,17 +1373,33 @@
                 }
             }
 
-            /* ── RESPONSIVE ── */
+            /* ═══════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════ */
+            @media (max-width: 900px) {
+                .char-side {
+                    display: none;
+                }
+            }
             @media (max-width: 640px) {
                 body {
                     padding: 0;
-                    align-items: stretch;
+                }
+                .marquee-wrap {
+                    border-radius: 0;
+                    height: 26px;
+                }
+                .marquee-text {
+                    font-size: 13px;
                 }
                 .terminal {
                     max-width: 100%;
                     max-height: 100vh;
                     border-radius: 0;
                     border: none;
+                }
+                .terminal::before {
+                    display: none;
                 }
                 .screen {
                     padding: 14px 14px 10px;
@@ -512,53 +1417,112 @@
                     grid-template-columns: 1fr 1fr;
                 }
                 .statusbar {
-                    font-size: 14px;
-                    padding: 5px 10px;
+                    font-size: 13px;
+                    padding: 4px 8px;
+                    flex-wrap: wrap;
+                    gap: 4px;
+                }
+                .statusbar-center {
+                    font-size: 12px;
                 }
                 .titlebar-text {
-                    font-size: 13px;
+                    font-size: 12px;
                 }
                 .prompt-line {
                     font-size: 16px;
                 }
+                .about-region {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .about-miku-card {
+                    width: 100%;
+                    max-width: 280px;
+                    margin: 0 auto;
+                }
+                .about-row {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .about-header-inline {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+                .char-bottom-area {
+                    margin-top: 8px;
+                }
+                .char-bottom-frame {
+                    padding: 4px;
+                    gap: 8px;
+                    min-height: 52px;
+                }
+                .char-bottom-frame img {
+                    height: 68px;
+                }
+                .footer-badges {
+                    gap: 4px;
+                }
+            .badge-90s {
+                font-size: 6px;
+                padding: 2px 5px;
             }
-        </style>
+            .quote-carousel {
+                font-size: 10px;
+                padding: 4px 0;
+            }
+        }
+    </style>
     </head>
-    <body>
-        <div class="terminal">
-            <!-- ─── TITLE BAR ─── -->
-            <div class="titlebar">
-                <div class="titlebar-dots">
-                    <span class="titlebar-dot red"></span>
-                    <span class="titlebar-dot yellow"></span>
-                    <span class="titlebar-dot green"></span>
-                </div>
-                <div class="titlebar-text">
-                    <span class="highlight">jd-apprentice</span>@portfolio: ~
-                </div>
-            </div>
 
-            <!-- ─── SCREEN ─── -->
-            <div
-                class="screen"
-                x-data="portfolio()"
-                @click="focusInput($event)"
-            >
-                <div class="about-header">
-                    <div class="profile-pic">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/68082746?s=400&u=91d9f39e5c3715d8b3ef4bce134a346bbbe95150&v=4"
-                            alt="jd-apprentice"
-                            width="96"
-                            height="96"
-                        />
-                    </div>
-                    <div class="about-body">
-                        <div class="output-title" style="margin-bottom: 4px">
-                            # about
-                        </div>
-                        <div class="output-text">
-                            <strong style="color: #00ff41"
+    <body>
+        <!-- ═══ STARFIELD LAYERS ═══ -->
+        <div class="bg-stars">
+            <div class="star-layer" id="stars"></div>
+            <div class="star-layer" id="stars2"></div>
+            <div class="star-layer" id="stars3"></div>
+        </div>
+
+        <!-- ═══ MARQUEE ═══ -->
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <span class="marquee-text"
+                    >♪ wa~! ようこそ ♪ Frieren ♪ Hatsune Miku ♪ Cyberpunk:
+                    Edgerunners ♪ Final Fantasy ♪ Persona ♪ Touhou ♪</span
+                >
+                <span class="marquee-text"
+                    >♪ wa~! ようこそ！♪ Frieren ♪ Hatsune Miku ♪ Cyberpunk:
+                    Edgerunners ♪ Final Fantasy ♪ Persona ♪ Touhou ♪</span
+                >
+            </div>
+        </div>
+
+        <!-- ═══ BIG RETRO BANNER (full-bleed Frieren) ═══ -->
+        <div class="big-banner">
+            <div class="banner-inner">
+                <img
+                    src="assets/frieren-pixel.gif"
+                    alt="Frieren"
+                    class="banner-frieren"
+                />
+            </div>
+        </div>
+
+        <!-- ═══ ABOUT + MIKU REGION ═══ -->
+        <div class="about-region">
+            <div class="about-content">
+                <div class="about-header-inline">
+                    <img
+                        src="https://avatars.githubusercontent.com/u/68082746?s=400&u=91d9f39e5c3715d8b3ef4bce134a346bbbe95150&v=4"
+                        alt="jd-apprentice"
+                        width="80"
+                        height="80"
+                        class="about-avatar"
+                    />
+                    <div class="about-text-block">
+                        <div class="about-heading"># about</div>
+                        <div class="about-sub">
+                            <strong style="color: var(--cyan)"
                                 >SysAdmin/DevOps | Software Development |
                                 Application Security</strong
                             ><br />
@@ -570,84 +1534,104 @@
                                 >Dyallab</a
                             >
                             — transforming ideas into Reality.
-                        </div>
-                        <div class="output-text" style="margin-top: 6px">
-                            Infrastructure specialist with experience in
-                            on-premise environments, hypervisors, and systems
-                            administration. Passionate about building real
-                            projects whether for fun or to deliver value.
-                            Currently working as a Senior Application Security
-                            Engineer.
-                        </div>
-                        <div class="output-text" style="margin-top: 6px">
-                            <span style="color: #007700">2026 Roadmap:</span
-                            ><br />
-                            • Launch a product with active users.<br />
-                            • Earn an Infrastructure Certification.<br />
-                            • Self-host a &gt;30B LLM.<br />
-                            • Deep forest expedition (3+ days).
-                        </div>
-                        <div
-                            class="output-text"
-                            style="margin-top: 6px; color: #008800"
-                        >
-                            Interests: Homelabbing, Robotics, Books, Chess &amp;
-                            Photography
-                        </div>
-                        <div class="social-links" style="margin-top: 6px">
-                            <a
-                                class="social-link"
-                                href="https://github.com/jd-apprentice"
-                                target="_blank"
-                                rel="noopener"
-                                >github</a
-                            >
-                            <a
-                                class="social-link"
-                                href="https://blog.jonathan.com.ar/"
-                                target="_blank"
-                                rel="noopener"
-                                >blog</a
-                            >
-                            <a
-                                class="social-link"
-                                href="https://app.hackthebox.com/users/834305"
-                                target="_blank"
-                                rel="noopener"
-                                >htb</a
-                            >
-                            <a
-                                class="social-link"
-                                href="https://tryhackme.com/p/jd.apprentice"
-                                target="_blank"
-                                rel="noopener"
-                                >thm</a
-                            >
-                            <a
-                                class="social-link"
-                                href="https://www.openbugbounty.org/researchers/dyallo/"
-                                target="_blank"
-                                rel="noopener"
-                                >obb</a
-                            >
-                            <a
-                                class="social-link"
-                                href="mailto:contacto@jonathan.com.ar"
-                                >contact</a
-                            >
-                            <a
-                                class="social-link"
-                                href="./assets/Resume.pdf"
-                                target="_blank"
-                                rel="noopener"
-                                >resume</a
-                            >
+                            <span class="badge-new">NEW!</span>
                         </div>
                     </div>
                 </div>
+                <div class="about-bio">
+                    Infrastructure specialist with experience in on-premise
+                    environments, hypervisors, and systems administration.
+                    Passionate about building real projects whether for fun or
+                    to deliver value. Currently working as a Senior Application
+                    Security Engineer.
+                </div>
+                <div class="about-row">
+                    <div class="about-roadmap">
+                        <span style="color: var(--gold); font-weight: bold"
+                            >2026 Roadmap:</span
+                        ><br />
+                        • Launch a product with active users.<br />
+                        • Earn an Infrastructure Certification.<br />
+                        • Self-host a &gt;30B LLM.<br />
+                        • Deep forest expedition (3+ days).
+                    </div>
+                    <div class="about-interests">
+                        <span style="color: var(--soft-purple)"
+                            >Interests:</span
+                        >
+                        Homelabbing, Robotics<span
+                            class="blink"
+                            style="color: var(--hotpink); margin: 0 2px"
+                            >_</span
+                        >
+                        Books, Chess &amp; Photography
+                    </div>
+                </div>
+                <div class="social-links" style="margin-top: 4px">
+                    <a
+                        class="social-link"
+                        href="https://github.com/jd-apprentice"
+                        target="_blank"
+                        rel="noopener"
+                        >github</a
+                    >
+                    <a
+                        class="social-link"
+                        href="https://blog.jonathan.com.ar/"
+                        target="_blank"
+                        rel="noopener"
+                        >blog</a
+                    >
+                    <a
+                        class="social-link"
+                        href="https://app.hackthebox.com/users/834305"
+                        target="_blank"
+                        rel="noopener"
+                        >htb</a
+                    >
+                    <a
+                        class="social-link"
+                        href="https://tryhackme.com/p/jd.apprentice"
+                        target="_blank"
+                        rel="noopener"
+                        >thm</a
+                    >
+                    <a
+                        class="social-link"
+                        href="https://www.openbugbounty.org/researchers/dyallo/"
+                        target="_blank"
+                        rel="noopener"
+                        >obb</a
+                    >
+                    <a
+                        class="social-link"
+                        href="mailto:contacto@jonathan.com.ar"
+                        >contact</a
+                    >
+                    <a
+                        class="social-link"
+                        href="./assets/Resume.pdf"
+                        target="_blank"
+                        rel="noopener"
+                        >resume</a
+                    >
+                </div>
+            </div>
+            <div class="about-miku-card">
+                <div class="miku-frame-inner">
+                    <img src="assets/miku-v2.gif" alt="Hatsune Miku" />
+                </div>
+            </div>
+        </div>
 
-                <div class="separator"></div>
-
+        <!-- ═══ TERMINAL ═══ -->
+        <div class="terminal">
+            <!-- ─── SCREEN ─── -->
+            <div
+                class="screen"
+                x-data="portfolio()"
+                @click="focusInput($event)"
+            >
                 <!-- PROMPT (always visible) -->
                 <div class="prompt-line">
                     <span class="prompt">jd-apprentice@portfolio:~$</span>
@@ -679,23 +1663,25 @@
                     </template>
                 </div>
 
-                <!-- ─── HELP (shown when no section or 'help' cmd) ─── -->
+                <!-- ─── HELP ─── -->
                 <div
                     class="output fade-enter"
                     x-show="activeSection === 'help' || !activeSection"
                 >
-                    <div class="output-title"># available commands</div>
+                    <div class="output-title rainbow-heading">
+                        # available commands
+                    </div>
                     <div class="output-text">
-                        <span style="color: #007700">skills</span> — Technical
-                        &amp; soft skills<br />
-                        <span style="color: #007700">projects</span> — My
+                        <span style="color: var(--green)">skills</span> —
+                        Technical &amp; soft skills<br />
+                        <span style="color: var(--green)">projects</span> — My
                         projects<br />
-                        <span style="color: #007700">communities</span> —
+                        <span style="color: var(--green)">communities</span> —
                         Communities &amp; organizations<br />
-                        <span style="color: #007700">videos</span> — Talks &amp;
-                        media<br />
-                        <span style="color: #007700">help</span> — Show this
-                        list<br />
+                        <span style="color: var(--green)">videos</span> — Talks
+                        &amp; media<br />
+                        <span style="color: var(--green)">help</span> — Show
+                        this list<br />
                     </div>
                 </div>
 
@@ -704,7 +1690,9 @@
                     class="output fade-enter"
                     x-show="activeSection === 'skills'"
                 >
-                    <div class="output-title"># technical skills</div>
+                    <div class="output-title rainbow-heading">
+                        # technical skills
+                    </div>
                     <div class="skill-tags">
                         <template x-for="skill in skills" :key="skill">
                             <span class="skill-tag" x-text="skill"></span>
@@ -728,7 +1716,9 @@
                     class="output fade-enter"
                     x-show="activeSection === 'projects'"
                 >
-                    <div class="output-title"># projects (6)</div>
+                    <div class="output-title rainbow-heading">
+                        # projects (6)
+                    </div>
                     <div>
                         <template
                             x-for="(project, index) in projects"
@@ -747,7 +1737,10 @@
                                 <span class="pname">
                                     <span x-text="project.name"></span>
                                     <span
-                                        style="color: #006600; font-size: 15px"
+                                        style="
+                                            color: var(--soft-purple);
+                                            font-size: 15px;
+                                        "
                                         x-text="'(' + project.desc + ')'"
                                     ></span>
                                 </span>
@@ -765,7 +1758,7 @@
                     class="output fade-enter"
                     x-show="activeSection === 'communities'"
                 >
-                    <div class="output-title"># current</div>
+                    <div class="output-title rainbow-heading"># current</div>
                     <div>
                         <template
                             x-for="org in communities.current"
@@ -779,7 +1772,7 @@
                             >
                                 <span
                                     class="pname"
-                                    style="color: #00cc00"
+                                    style="color: var(--teal)"
                                     x-text="org.name"
                                 ></span>
                                 <span class="plink" x-text="org.role"></span>
@@ -805,7 +1798,7 @@
                             >
                                 <span
                                     class="pname"
-                                    style="color: #00cc00"
+                                    style="color: var(--teal)"
                                     x-text="org.name"
                                 ></span>
                                 <span class="plink" x-text="org.role"></span>
@@ -819,7 +1812,7 @@
                     class="output fade-enter"
                     x-show="activeSection === 'videos'"
                 >
-                    <div class="output-title"># videos (4)</div>
+                    <div class="output-title rainbow-heading"># videos (4)</div>
                     <div>
                         <template x-for="video in videos" :key="video.title">
                             <a
@@ -840,36 +1833,72 @@
             </div>
             <!-- /.screen -->
 
-            <!-- ─── STATUS BAR (audio player) ─── -->
+            <!-- ─── STATUS BAR ─── -->
             <div class="statusbar">
-                <div class="statusbar-controls">
-                    <button
-                        class="statusbar-btn"
-                        id="prevButton"
-                        title="Previous"
-                    >
-                        ◀◀
-                    </button>
-                    <button
-                        class="statusbar-btn"
-                        id="playPauseLabel"
-                        title="Play/Pause"
-                    >
-                        ▶
-                    </button>
-                    <button class="statusbar-btn" id="nextButton" title="Next">
-                        ▶▶
-                    </button>
+                <div class="statusbar-left">
+                    <div class="statusbar-controls">
+                        <button
+                            class="statusbar-btn"
+                            id="prevButton"
+                            title="Previous"
+                        >
+                            ◀◀
+                        </button>
+                        <button
+                            class="statusbar-btn"
+                            id="playPauseLabel"
+                            title="Play/Pause"
+                        >
+                            ▶
+                        </button>
+                        <button
+                            class="statusbar-btn"
+                            id="nextButton"
+                            title="Next"
+                        >
+                            ▶▶
+                        </button>
+                    </div>
                 </div>
-                <div class="statusbar-song" id="nowPlaying">
-                    <span class="now-playing">♫</span>
-                    <span id="songName">cynthia_theme.mp3</span>
+                <div class="statusbar-center">
+                    <span class="clock-display" data-clock>--:--:--</span>
+                    <span class="sep">|</span>
+                    <span class="visitor-counter-label">visitors:</span>
+                    <span data-visitor-counter></span>
+                </div>
+                <div class="statusbar-right">
+                    <div class="statusbar-song">
+                        <span class="now-playing">♫</span>
+                        <span id="songName">cynthia_theme.mp3</span>
+                    </div>
                 </div>
                 <audio id="audioPlayer" preload="auto"></audio>
             </div>
         </div>
         <!-- /.terminal -->
 
+        <!-- ═══ LUCY BOTTOM BANNER ═══ -->
+        <div class="char-bottom-area">
+            <div class="char-bottom-frame">
+                <img
+                    src="assets/initiald-ae86.gif"
+                    alt="Initial D AE86"
+                />
+            </div>
+        </div>
+
+        <!-- ═══ FOOTER BADGES ═══ -->
+
+
+        <!-- ═══ ANIME QUOTES MARQUEE ═══ -->
+        <div class="quote-marquee">
+            <div class="quote-track">
+                <span class="quote-text">✦ ようこそ ✦ ★ ありがとう ★ ✦ 頑張って ✦ ★ 大丈夫 ★ ✦ さようなら ★ ✦ すごい ✦ ★ 最高 ★ ✦ 君の名は ✦ ★ 覚悟 ✦ ✦ 泣くな ✦ ★ 約束だ ★ ✦ 信じろ ✦</span>
+                <span class="quote-text">✦ ようこそ ✦ ★ ありがとう ★ ✦ 頑張って ✦ ★ 大丈夫 ★ ✦ さようなら ★ ✦ すごい ✦ ★ 最高 ★ ✦ 君の名は ✦ ★ 覚悟 ✦ ✦ 泣くな ✦ ★ 約束だ ★ ✦ 信じろ ✦</span>
+            </div>
+        </div>
+
+        <!-- ═══ SCRIPTS ═══ -->
         <script src="./index.js" defer></script>
         <script>
             document.addEventListener("alpine:init", () => {
@@ -1084,5 +2113,6 @@
                 }));
             });
         </script>
+        <script src="./effects.js" defer></script>
     </body>
 </html>
