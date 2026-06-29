@@ -1682,7 +1682,6 @@
                         x-ref="terminalInput"
                         autocomplete="off"
                         spellcheck="false"
-                        autofocus
                     />
                 </div>
 
@@ -1947,6 +1946,13 @@
                 Alpine.data("portfolio", () => ({
                     // ── state ──
                     activeSection: "",
+
+                    // ── init (focus input without scroll) ──
+                    init() {
+                        this.$nextTick(() => {
+                            this.$refs.terminalInput?.focus({ preventScroll: true });
+                        });
+                    },
                     projects: [
                         {
                             name: "Mainhost",
